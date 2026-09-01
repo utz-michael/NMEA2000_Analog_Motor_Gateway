@@ -172,16 +172,18 @@ void sendeEngineDynamicNachricht(double oeldruckPSI, double temperaturF) {
   SetN2kEngineDynamicParam(
     N2kMsg,
     ENGINE_INSTANCE,
-    oeldruckPascal,       // EngineOilPress (Pa)
-    N2kDoubleNA,          // EngineOilTemp (nicht gemessen)
-    tempKelvin,           // EngineCoolantTemp (K)
-    N2kDoubleNA,          // AlternatorVoltage (nicht gemessen)
-    N2kDoubleNA,          // FuelRate (nicht gemessen)
-    N2kDoubleNA,          // EngineHours (nicht gemessen)
-    N2kDoubleNA,          // EngineCoolantPress
-    N2kDoubleNA,          // EngineFuelPress
-    N2kInt8NA,            // EngineLoad
-    N2kInt8NA             // EngineTorque
+    oeldruckPascal,               // EngineOilPress (Pa)
+    N2kDoubleNA,                  // EngineOilTemp (nicht gemessen)
+    tempKelvin,                   // EngineCoolantTemp (K)
+    N2kDoubleNA,                  // AlternatorVoltage (nicht gemessen)
+    N2kDoubleNA,                  // FuelRate (nicht gemessen)
+    N2kDoubleNA,                  // EngineHours (nicht gemessen)
+    N2kDoubleNA,                  // EngineCoolantPress
+    N2kDoubleNA,                  // EngineFuelPress
+    (int8_t)N2kInt8NA,            // EngineLoad
+    (int8_t)N2kInt8NA,            // EngineTorque
+    (tN2kEngineDiscreteStatus1)0, // Status1 - explizit, um Overload-Ambiguität zu vermeiden
+    (tN2kEngineDiscreteStatus2)0  // Status2
   );
 
   NMEA2000.SendMsg(N2kMsg);
